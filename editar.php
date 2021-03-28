@@ -10,27 +10,38 @@
   <body>
         <?php
 		      include_once('menu.php');
+          require_once('processa-visualizar.php');
+
       	?>
       <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                aqui entra o id
+              <h5>id: <?= $resultado->_id?></h5> 
             </div>
             <div class="card-body">
               
               <label for="titulo">Título:</label><br>
-              <input type="text" name="titulo" id="" class="form-control"><br>
+              <input type="text" name="titulo" id="titulo" class="form-control"><br>
               <label for="artigo">Artigo:</label><br>
-              <textarea class="form-control" name="artigo" rows="5"></textarea><br>
+              <textarea class="form-control" name="artigo" id="conteudo"rows="5"></textarea><br>
 
-                <a href="#" class="btn btn-warning"> Editar</a>
-                <a href="#" class="btn btn-danger"> Deletar</a>
+                <a href="#" class="btn btn-success"> Salvar Edição</a>
             </div>
         </div>
         <div class="text-end">
-          <a href="#" class="btn btn-primary mt-5"> Voltar</a>
+          <a href="visualizar.php?id=<?= $resultado->_id ?>" class="btn btn-primary mt-5"> Voltar</a>
         </div>
       </div>
+     
+     <script>
+        var titulo = "<?= $resultado->titulo?>";
+        var conteudo = "<?= $resultado->conteudo?>";
+        var inputTitulo = document.getElementById('titulo');
+        var inputConteudo = document.getElementById('conteudo');
+        inputTitulo.value = titulo;
+        inputConteudo.value = conteudo;
+      </script>
+    
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

@@ -7,7 +7,8 @@
 	</head>
 	<body>
 		<?php
-			require_once('processa-listar.php');
+			$url = "http://localhost:8081/";
+			$resultado = json_decode(file_get_contents($url));
 		    include_once('menu.php');
       	?>
 		<div class="container">
@@ -32,10 +33,10 @@
 					</td>
 					<td class="text-right">
 						<div class="d-inline ml-3">
-							<a href="#" class="btn btn-success"> Visualizar</a>
+							<a href="visualizar.php?id=<?= $artigo->_id ?>" class="btn btn-success">Visualizar</a>
 						</div>
 						<div class="d-inline ml-3">
-							<a href="#" class="btn btn-danger"> Deletar</a>
+							<a href="processa-deletar.php?id=<?= $artigo->_id ?>" class="btn btn-danger">Deletar</a>
 						</div>
 					</td>
 				  </tr>

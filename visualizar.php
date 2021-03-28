@@ -10,24 +10,27 @@
   <body>
       <?php
         include_once('menu.php');
+        require_once('processa-visualizar.php');
+
+        
       ?>
       <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                aqui entra o id
+              <h5>id: <?= $resultado->_id?></h5> 
             </div>
             <div class="card-body">
                 
-                <h5 class="card-title">aqui entra o titulo</h5>
+                <h5 class="card-title"><?= $resultado->titulo?></h5>
                 
-                <p class="card-text">aqui entra o conteúdo do artigo</p>
+                <p class="card-text"><?= $resultado->conteudo?></p>
 
-                <a href="#" class="btn btn-warning"> Editar</a>
+                <a href="editar.php?id=<?= $resultado->_id?>" class="btn btn-warning"> Editar</a>
                 <a href="#" class="btn btn-danger"> Deletar</a>
             </div>
         </div>
         <div class="text-end">
-            <a href="#" class="btn btn-primary mt-5"> Voltar</a>
+            <a href="index.php" class="btn btn-primary mt-5"> Voltar</a>
         </div>
       </div>
     
