@@ -11,19 +11,26 @@
         <?php
 		      include_once('menu.php');
           require_once('curl-visualizar.php');
-
+          $alerta = '';
+          if (isset($_GET['erro']) && $_GET['erro'] == 1){
+            $alerta = 	"<div class='alert alert-danger' role='alert'>
+                    Falha ao tentar atualizar seu artigo! tente novamente mais tarde...
+                  </div>";
+          } 
+          
       	?>
       <div class="container mt-5">
+      <?= $alerta ?>
         <div class="card">
             <div class="card-header">
               <h5>id: <?= $response->_id?></h5> 
             </div>
             <div class="card-body">
-              <form action="" method="post"> 
+              <form action="curl-editar.php?id=<?= $response->_id?>" method="post"> 
                 <label for="titulo">Título:</label><br>
                 <input type="text" name="titulo" id="titulo" class="form-control"><br>
                 <label for="artigo">Artigo:</label><br>
-                <textarea class="form-control" name="artigo" id="conteudo"rows="5"></textarea><br>
+                <textarea class="form-control" name="conteudo" id="conteudo"rows="5"></textarea><br>
                 <input type="submit" name="salvar" class="btn btn-success" value="Salvar Edição">
               </form>
             </div>

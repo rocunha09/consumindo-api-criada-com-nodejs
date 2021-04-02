@@ -11,10 +11,20 @@
       <?php
         include_once('menu.php');
         require_once('curl-visualizar.php');
+        $alerta = '';
+        if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1){
+          $alerta = 	"<div class='alert alert-success' role='alert'>
+                  Artigo editado com sucesso!
+                </div>";
+        } 
 
+        if (isset($_GET['id']) && $_GET['id'] !=''){
+          $response->_id = $_GET['id'];
+        };
         
       ?>
       <div class="container mt-5">
+      <?= $alerta ?>
         <div class="card">
             <div class="card-header">
               <h5>id: <?= $response->_id?></h5> 
@@ -26,7 +36,7 @@
                 <p class="card-text"><?= $response->conteudo?></p>
 
                 <a href="editar.php?id=<?= $response->_id?>" class="btn btn-warning"> Editar</a>
-                <a href="#" class="btn btn-danger"> Deletar</a>
+                <a href="curl-deletar.php?tela=visualizar&id=<?= $response->_id?>" class="btn btn-danger"> Deletar</a>
             </div>
         </div>
         <div class="text-end">

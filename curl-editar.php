@@ -1,4 +1,7 @@
 <?php
+    if (isset($_GET['id']) && $_GET['id'] !=''){
+        $id = $_GET['id'];
+    };
 
     if (isset($_POST['titulo']) && $_POST['titulo'] !=''){
         $titulo = $_POST['titulo'];
@@ -12,12 +15,12 @@
          "titulo"=> $titulo,
         "conteudo"=> $conteudo
     );
-    
+
     $artigo = json_encode($artigo);
 
     // Cria o cURL
     $curl = curl_init();
-    $url = "http://localhost:8081/artigo";
+    $url = "http://localhost:8081/artigo/" . $id;
 
     //define header da req POST
     $header_curl = array(
@@ -29,7 +32,7 @@
     curl_setopt_array($curl, [
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,
-        CURLOPT_POST => 1,
+        CURLOPT_CUSTOMREQUEST =>'PUT',
         CURLOPT_POSTFIELDS => $artigo,
         CURLOPT_HTTPHEADER=> $header_curl
     ]);
@@ -37,10 +40,17 @@
     $response = json_decode(curl_exec($curl));
     // Fecha a requisição e limpa a memória
     curl_close($curl);
-
+    /*    
+        echo '<br>';
+        echo '<pre>';
+        var_dump($response);
+        echo '</pre>';
+    */
+    
     if ($response->error == 0) {
-        header('Location: index.php?sucesso=1');
+        header('Location: visualizar.php?sucesso=1&id='.$id);
     } else {
-        header('Location: index.php?erro=1');
+        header('Location: editar.php?erro=1&id='.$id);
     }
+    
 ?>
