@@ -10,22 +10,22 @@
   <body>
       <?php
         include_once('menu.php');
-        require_once('processa-visualizar.php');
+        require_once('curl-visualizar.php');
 
         
       ?>
       <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-              <h5>id: <?= $resultado->_id?></h5> 
+              <h5>id: <?= $response->_id?></h5> 
             </div>
             <div class="card-body">
                 
-                <h5 class="card-title"><?= $resultado->titulo?></h5>
+                <h5 class="card-title"><?= $response->titulo?></h5>
                 
-                <p class="card-text"><?= $resultado->conteudo?></p>
+                <p class="card-text"><?= $response->conteudo?></p>
 
-                <a href="editar.php?id=<?= $resultado->_id?>" class="btn btn-warning"> Editar</a>
+                <a href="editar.php?id=<?= $response->_id?>" class="btn btn-warning"> Editar</a>
                 <a href="#" class="btn btn-danger"> Deletar</a>
             </div>
         </div>

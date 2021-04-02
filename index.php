@@ -7,11 +7,35 @@
 	</head>
 	<body>
 		<?php
-			$url = "http://localhost:8081/";
-			$resultado = json_decode(file_get_contents($url));
+			include_once("curl-listar.php");
 		    include_once('menu.php');
+			$alerta = '';
+			if (isset($_GET['erro']) && $_GET['erro'] == 1){
+				$alerta = 	"<div class='alert alert-danger' role='alert'>
+								Falha ao tentar cadastrar seu artigo! tente novamente mais tarde
+							</div>";
+			} 
       	?>
+		<div class="container mt-5 mb-5">
+		<?= $alerta ?>
+			<div class="card">
+				<div class="card-header">
+					<h5>Entre com o novo artigo a ser cadastrado</h5> 
+				</div>
+				<div class="card-body">
+					<form action="curl-cadastrar.php" method="post"> 
+						<label for="titulo">Título:</label><br>
+						<input type="text" name="titulo" id="titulo" class="form-control"><br>
+
+						<label for="artigo">Artigo:</label><br>
+						<textarea class="form-control" name="conteudo" id="conteudo"rows="5"></textarea><br>
+						<input type="submit" name="salvar" class="btn btn-success" value="Salvar Edição">
+					</form>
+				</div>
+			</div>
+		</div>
 		<div class="container">
+		<h5>Lista de Artigos cadastrados</h5> 
 			<table class="table table-striped">
 				<thead>
 				  <tr class="text-center">
@@ -22,7 +46,7 @@
 				</thead>
 				<tbody>
 				<?php
-					foreach ($resultado as $artigo) { ?>
+					foreach ($response as $artigo) { ?>
 
 				  <tr>
 					<td class="text-center">

@@ -10,32 +10,32 @@
   <body>
         <?php
 		      include_once('menu.php');
-          require_once('processa-visualizar.php');
+          require_once('curl-visualizar.php');
 
       	?>
       <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-              <h5>id: <?= $resultado->_id?></h5> 
+              <h5>id: <?= $response->_id?></h5> 
             </div>
             <div class="card-body">
-              
-              <label for="titulo">Título:</label><br>
-              <input type="text" name="titulo" id="titulo" class="form-control"><br>
-              <label for="artigo">Artigo:</label><br>
-              <textarea class="form-control" name="artigo" id="conteudo"rows="5"></textarea><br>
-
-                <a href="#" class="btn btn-success"> Salvar Edição</a>
+              <form action="" method="post"> 
+                <label for="titulo">Título:</label><br>
+                <input type="text" name="titulo" id="titulo" class="form-control"><br>
+                <label for="artigo">Artigo:</label><br>
+                <textarea class="form-control" name="artigo" id="conteudo"rows="5"></textarea><br>
+                <input type="submit" name="salvar" class="btn btn-success" value="Salvar Edição">
+              </form>
             </div>
         </div>
         <div class="text-end">
-          <a href="visualizar.php?id=<?= $resultado->_id ?>" class="btn btn-primary mt-5"> Voltar</a>
+          <a href="visualizar.php?id=<?= $response->_id ?>" class="btn btn-primary mt-5"> Voltar</a>
         </div>
       </div>
      
      <script>
-        var titulo = "<?= $resultado->titulo?>";
-        var conteudo = "<?= $resultado->conteudo?>";
+        var titulo = "<?= $response->titulo?>";
+        var conteudo = "<?= $response->conteudo?>";
         var inputTitulo = document.getElementById('titulo');
         var inputConteudo = document.getElementById('conteudo');
         inputTitulo.value = titulo;
